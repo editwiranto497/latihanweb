@@ -1,0 +1,93 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('../storage/images/background_web.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card-group {
+    box-shadow: 0 20px 30px rgba(247, 162, 4, 0.3);
+    /* Warna orange */
+}
+.background_web{
+    background-image: url('../storage/images/backgroundlanding.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90vh;
+    height: 70vh;
+    display: block;
+}
+.partial-underline {
+    display: inline-block;
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: rgb(255, 181, 44);
+}
+
+.partial-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 4px;
+    background-color: rgb(255, 181, 44);
+}
+.login_page{
+    padding: 20px;
+}
+.login_page p{
+    margin-bottom: 25px;
+}
+.text{
+    color: rgb(218, 218, 218);
+}
+.border input:focus,
+.border textarea:focus {
+    outline: none;
+    /* Menghapus outline bawaan browser */
+    box-shadow: none;
+    /* Menghapus box-shadow dari Bootstrap */
+    border-color: #e4e4e4;
+    /* Mengembalikan border ke warna default */
+    background-color: rgb(233, 233, 233);
+}
+form .border{
+    color: rgb(143, 143, 143);
+    background-color: rgb(233, 233, 233);
+}
+.border form a{
+    text-decoration: none;
+    color: rgb(218, 218, 218);
+}
+.button .btn{
+    margin-left: 5px;
+    margin-top: 20px;
+    border: none;
+    width: 150px;
+    font-size: 20px;
+    background: linear-gradient(to right, orange, yellow);
+}
+/* tampilan mobile */
+
+@media (max-width: 760px){
+    .container{
+        width: 100%;
+    }
+    .background_web{
+        display: none;
+    }
+
+    .login_page{
+        min-width: 450px;
+        height: 100%;
+    }
+}
