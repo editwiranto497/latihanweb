@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyTestEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
     public function index(){
+
         return view('landingpage.index');
+    }
+
+    public function latihan(){
+        $jam = Carbon::now();
+        Mail::to('testtest04082001@gmail.com')
+        ->send(new MyTestEmail('Latihan laravel '. $jam));
+        return redirect('/');
     }
 
     public function login(Request $request){

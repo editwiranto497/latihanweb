@@ -74,6 +74,7 @@
                     </div>
                     <div class="register" style="margin-top: 5px;margin-left:5px;">
                         <a href="/register">Create Account</a>
+                        <a href="/latihan">Send Email</a>
                     </div>
                 </form>
             </div>

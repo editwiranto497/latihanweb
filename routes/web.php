@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SocialAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,7 @@ Route::middleware(['belum.login'])->group(function(){
 Route::middleware(['sudah.login'])->group(function(){
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'index');
+        Route::get('/latihan','latihan');
         Route::post('/login', 'login')->name('login');
         Route::get('/register', 'registerView');
         Route::post('/register', 'register')->name('register');

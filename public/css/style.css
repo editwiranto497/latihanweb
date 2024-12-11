@@ -68,6 +68,9 @@ form .border{
     text-decoration: none;
     color: rgb(218, 218, 218);
 }
+.register a:hover{
+    text-decoration: underline;
+}
 .button .btn{
     margin-left: 5px;
     margin-top: 20px;
