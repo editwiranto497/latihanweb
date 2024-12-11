@@ -22,22 +22,27 @@ use App\Http\Controllers\SocialAuthController;
 // });
 
 
-Route::middleware(['belum.login'])->group(function(){
+Route::middleware(['belum.login'])->group(function () {
     Route::controller(DataController::class)->group(function () {
         Route::get('/dashboard', 'data');
     });
-
 });
 
-Route::middleware(['sudah.login'])->group(function(){
+Route::middleware(['sudah.login'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'index');
-        Route::get('/latihan','latihan');
+        Route::get('/latihan', 'latihan');
+        Route::post('/latihan', 'latihan')->name('latihan');
         Route::post('/login', 'login')->name('login');
         Route::get('/register', 'registerView');
         Route::post('/register', 'register')->name('register');
     });
 });
-Route::controller(UserController::class)->group(function(){
+Route::controller(UserController::class)->group(function () {
     Route::get('logout', 'logout')->name('logout');
+    Route::get('/reset-password', 'resetPassword')->name('resetPassword');
+    Route::get('/hasil', fn() => view('auth.hasil-reset'));
+    Route::get('/new-password', 'showEditForm');
+    Route::post('/new-password','updateData')->name('update.password');
+
 });

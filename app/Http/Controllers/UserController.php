@@ -15,14 +15,33 @@ class UserController extends Controller
 {
     public function index(){
 
-        return view('landingpage.index');
+        return view('auth.index');
     }
 
-    public function latihan(){
-        $jam = Carbon::now();
-        Mail::to('testtest04082001@gmail.com')
-        ->send(new MyTestEmail('Latihan laravel '. $jam));
-        return redirect('/');
+    public function latihan(Request $request){
+        // $jam = Carbon::now();
+        // Mail::to('testtest04082001@gmail.com')
+        // ->send(new MyTestEmail('Latihan laravel '. $jam));
+        // return redirect('/');
+
+
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $emailTujuan = $request->input('email');
+
+        $user = User::where('email', $emailTujuan)->first();
+
+        if (!$user) {
+        return redirect()->back()->withErrors(['email' => 'Email not found in our database.']);
+    }
+
+        $link = url('/new-password?email=' . urlencode($emailTujuan));
+        Mail::to($emailTujuan)
+            ->send(new MyTestEmail("Klik link berikut untuk mengatur password $link"));
+
+        return redirect('/hasil')->with('emailTujuan',$emailTujuan);
     }
 
     public function login(Request $request){
@@ -65,7 +84,7 @@ class UserController extends Controller
 
 
     public function registerView(){
-        return view('landingpage.register');
+        return view('auth.register');
     }
 
     public function register(Request $request){
@@ -96,4 +115,40 @@ class UserController extends Controller
 
         return redirect('/');
     }
+    public function resetPassword(){
+        return view('auth.reset-password');
+    }
+
+    public function showEditForm(Request $request){
+        $email = $request->query('email');
+        $user = User::where('email', $email)->first();
+
+        // // Jika user tidak ditemukan, redirect dengan pesan error
+        if (!$user) {
+            return redirect('/')->with('error', 'Data user tidak ditemukan.');
+        }
+
+        // Tampilkan form dengan data user
+        return view('auth.new_password',compact('email'));
+    }
+
+    public function updateData(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8', // minimal 8 karakter dan konfirmasi password
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email tidak ditemukan.');
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect('/')->with('success', 'Password berhasil diubah. Silakan login.');
+    }
+
 }
