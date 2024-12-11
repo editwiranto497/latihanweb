@@ -35,7 +35,7 @@ class UserController extends Controller
 
         if (!$user) {
         return redirect()->back()->withErrors(['email' => 'Email not found in our database.']);
-    }
+        }
 
         $link = url('/new-password?email=' . urlencode($emailTujuan));
         Mail::to($emailTujuan)

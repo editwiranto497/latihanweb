@@ -68,7 +68,7 @@ form .border{
     text-decoration: none;
     color: rgb(218, 218, 218);
 }
-.register a:hover{
+.register a:hover, .forgot-password a:hover{
     text-decoration: underline;
 }
 .button .btn{

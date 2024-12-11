@@ -12,6 +12,23 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <style>
+        @keyframes grow {
+            0% {
+                transform: scale(0.7);
+                /* Mulai dari ukuran setengah */
+            }
+
+            100% {
+                transform: scale(1);
+                /* Akhirnya ke ukuran normal */
+            }
+        }
+
+        .main{
+            animation: grow 1s ease-in-out;
+        }
+    </style>
 </head>
 
 <body>
