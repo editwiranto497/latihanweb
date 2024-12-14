@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     @vite(['resources/js/app.js', 'resources/css/app.css'])
-    <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-  rel="stylesheet"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
 
 </head>
 
@@ -35,35 +32,43 @@
                 <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Nama" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" placeholder="Nama" name="name"
+                            value="{{ old('name') }}">
                     </div>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}">
+                        <input type="text" class="form-control" placeholder="Username" name="username"
+                            value="{{ old('username') }}">
                     </div>
-                     @error('username')
+                    @error('username')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" placeholder="Email" name="email"
+                            value="{{ old('email') }}">
                     </div>
-                     @error('email')
+                    @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="mb-3">
-                        <input type="Password" class="form-control" placeholder="Password" name="password">
+                        <input type="Password" class="form-control" placeholder="Password" name="password" id="password">
                     </div>
-                     @error('password')
+                    @error('password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="mb-3">
-                        <input type="Password" class="form-control" placeholder="Password Konfirmasi" name="password_confirmation">
+                        <input type="Password" class="form-control" placeholder="Password Konfirmasi"
+                            name="password_confirmation">
                     </div>
-                     @error('password_confirmation')
+                    @error('password_confirmation')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
+                    <div class="strength-container">
+                        <div id="strength-bar" class="strength-bar"></div>
+                    </div>
+                    <p id="strength-text"></p>
                     <div class="button">
                         <button type="submit" class="btn btn-outline-dark rounded-pill">LET'S GO</button>
                     </div>
@@ -78,6 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

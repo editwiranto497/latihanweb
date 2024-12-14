@@ -92,7 +92,19 @@ class UserController extends Controller
             'name' => 'required|string',
             'username' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed'
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[\W_]/'
+            ]
+
+        ],[
+            'password.regex' => 'Password harus mengandung huruf besar,huruf kecil,angka dan simbol',
+            'password.min' => 'Password harus lebih dari 8 karakter'
         ]);
 
 
